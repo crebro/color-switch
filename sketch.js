@@ -30,7 +30,7 @@ function draw() {
   push();
   fill(255);
   textSize(40);
-  text(score, 25, 50)
+  text(`Score: ${score}`, 25, 50)
   pop();
   
   if (ball.y < windowHeight / 2) {
@@ -68,4 +68,5 @@ function keyPressed() {
 
 function touchStarted() {
   ball.jump();
+  return false;
 }
