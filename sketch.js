@@ -16,9 +16,9 @@ let jumpSound;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   ball = new Ball(windowWidth / 2, windowHeight / 2, 20);
-  obstacles.push(new CircularObstacle(windowWidth / 2, 200));
-  obstacles.push(new CircularObstacle(windowWidth / 2, -400));
-  obstacles.push(new CircularObstacle(windowWidth / 2, -1000));
+  obstacles.push(new CircularObstacle(windowWidth / 2, ball.y - 200));
+  obstacles.push(new CircularObstacle(windowWidth / 2, obstacles[obstacles.length - 1].y - 600));
+  obstacles.push(new CircularObstacle(windowWidth / 2, obstacles[obstacles.length - 1].y - 600));
   tingSound = loadSound('assets/ting.wav');
   failSound = loadSound('assets/fail.wav');
   jumpSound = loadSound('assets/jump.wav');
