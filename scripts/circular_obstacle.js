@@ -30,8 +30,18 @@ class CircularObstacle {
   }
   
   ballCollision(ball) {
-    let isCollidingBottom = ball.y > this.y + (obstacleDiameter / 2) - obstacleThickness / 2 && ball.y < this.y + (obstacleDiameter / 2) + obstacleThickness / 2;
-    let isCollidingUp = ball.y > this.y - (obstacleDiameter / 2) - obstacleThickness / 2 && ball.y < this.y - (obstacleDiameter / 2) + obstacleThickness / 2;
+    let closestDistance = Math.abs(this.y - ( ball.y > this.y ? ball.y - ball.radius : ball.y + ball.radius));
+    let farthestDistance = closestDistance + ball.radius;
+
+    let outermostDistance = obstacleDiameter / 2 + obstacleThickness / 2;
+    let lowermostDistance = obstacleDiameter / 2 - obstacleThickness / 2
+
+    let collisionHappening = ( closestDistance < outermostDistance && lowermostDistance > lowermostDistance ) || (farthestDistance < outermostDistance && farthestDistance > lowermostDistance );
+    let isCollidingBottom = collisionHappening && ball.y > this.y;
+    let isCollidingUp = collisionHappening && ball.y < this.y;
+
+    rect( windowWidth / 2, this.y - obstacleDiameter / 2 - obstacleThickness / 2, 100, obstacleThickness);
+
     if ((isCollidingBottom || isCollidingUp) && ball.canJump) {
       let color = getBallCollisionColor(colors, isCollidingBottom, this.rotation);
       if (color !== ball.color) {
