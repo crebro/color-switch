@@ -18,8 +18,10 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   ball = new Ball(windowWidth / 2, windowHeight / 2, 10);
   obstacles.push(new CircularObstacle(windowWidth / 2, ball.y - 400));
-  // obstacles.push(new CircularObstacle(windowWidth / 2, obstacles[obstacles.length - 1].y - 600));
-  // obstacles.push(new CircularObstacle(windowWidth / 2, obstacles[obstacles.length - 1].y - 600));
+  for (let i = 0; i < 6; i++) {
+    obstacles.push(new CircularObstacle(windowWidth / 2, obstacles[obstacles.length - 1].y - 600));
+    obstacles.push(new CircularObstacle(windowWidth / 2, obstacles[obstacles.length - 1].y - 600));
+  }
   tingSound = loadSound('assets/ting.wav');
   failSound = loadSound('assets/fail.wav');
   jumpSound = loadSound('assets/jump.wav');
@@ -45,7 +47,7 @@ function draw() {
     obstacle.ballCollision(ball);
   }
   
-  if (obstacles[0].y > ball.y + 600 ) {
+  if (obstacles[0].y + obstacleDiameter / 2 + obstacleThickness / 2 > ball.y + height / 2) {
     obstacles = obstacles.splice(1, obstacles.length);
     obstacles.push(new CircularObstacle(windowWidth / 2, obstacles[obstacles.length - 1].y - 600));
   }
