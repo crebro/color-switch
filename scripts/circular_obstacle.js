@@ -25,18 +25,18 @@ class CircularObstacle {
     }
     
     pop();
-    
+    ;
     this.rotate();
   }
   
   ballCollision(ball) {
     let closestDistance = Math.abs(this.y - ( ball.y > this.y ? ball.y - ball.radius : ball.y + ball.radius));
-    let farthestDistance = closestDistance + ball.radius;
+    let farthestDistance = closestDistance + ball.radius * 2;
 
     let outermostDistance = obstacleDiameter / 2 + obstacleThickness / 2;
-    let lowermostDistance = obstacleDiameter / 2 - obstacleThickness / 2
+    let lowermostDistance = obstacleDiameter / 2 - obstacleThickness / 2;
 
-    let collisionHappening = ( closestDistance < outermostDistance && lowermostDistance > lowermostDistance ) || (farthestDistance < outermostDistance && farthestDistance > lowermostDistance );
+    let collisionHappening = ( closestDistance < outermostDistance && closestDistance > lowermostDistance ) || (farthestDistance < outermostDistance && farthestDistance > lowermostDistance );
     let isCollidingBottom = collisionHappening && ball.y > this.y;
     let isCollidingUp = collisionHappening && ball.y < this.y;
 

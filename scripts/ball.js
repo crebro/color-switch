@@ -24,7 +24,7 @@ class Ball {
     push();
     stroke(10);
     fill(...this.color);
-    circle(this.x, this.y, this.radius);
+    circle(this.x, this.y, this.radius * 2);
     
     this.x += this.xVelocity;
     pop();
