@@ -40,8 +40,6 @@ class CircularObstacle {
     let isCollidingBottom = collisionHappening && ball.y > this.y;
     let isCollidingUp = collisionHappening && ball.y < this.y;
 
-    rect( windowWidth / 2, this.y - obstacleDiameter / 2 - obstacleThickness / 2, 100, obstacleThickness);
-
     if ((isCollidingBottom || isCollidingUp) && ball.canJump) {
       let color = getBallCollisionColor(colors, isCollidingBottom, this.rotation);
       if (color !== ball.color) {
